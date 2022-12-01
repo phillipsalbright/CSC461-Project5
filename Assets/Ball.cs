@@ -7,19 +7,20 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
     private float reflectSpeed;
     private Vector3 velocity;
+    private float minReflectSpeed = 1;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
-        reflectSpeed = 5;
-        velocity = new Vector3(1, 1, 1) * 5;
+        //rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
+        reflectSpeed = 0;
+        velocity = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        velocity = rb.velocity;
+        //velocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)

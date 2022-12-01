@@ -12,15 +12,15 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        //rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
-        reflectSpeed = 0;
+        rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
+        reflectSpeed = 5;
         velocity = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //velocity = rb.velocity;
+        velocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +28,10 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
-
+            Destroy(collision.gameObject);
+        } else if (collision.gameObject.layer == 8)
+        {
+            rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
         }
     }
 

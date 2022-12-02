@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/DuncanZone.unity
+    guid: 7ad86fde6b713334c8ae7ff63bf020e9
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 8c4b30f7c8b710744a64efefa50bcf84
   m_configObjects:

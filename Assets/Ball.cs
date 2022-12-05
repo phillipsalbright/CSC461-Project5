@@ -48,6 +48,7 @@ public class Ball : MonoBehaviour
         {
             reflectSpeed = rb.velocity.magnitude;
             velocity = rb.velocity;
+            Debug.Log(velocity);
         }
     }
 }

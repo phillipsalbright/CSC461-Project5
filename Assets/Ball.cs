@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //velocity = rb.velocity;
+        velocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +28,6 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
-
         }
     }
 
@@ -38,6 +37,7 @@ public class Ball : MonoBehaviour
         {
             reflectSpeed = rb.velocity.magnitude;
             velocity = rb.velocity;
+            Debug.Log(velocity);
         }
     }
 }

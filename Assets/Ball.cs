@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Ball : MonoBehaviour
 {
@@ -8,12 +9,16 @@ public class Ball : MonoBehaviour
     private float reflectSpeed;
     private Vector3 velocity;
     private float minReflectSpeed = 1;
+
+    private int score = 0;
+    [SerializeField] private TextMeshProUGUI scoreLabel;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        //rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
-        reflectSpeed = 0;
+        rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
+        reflectSpeed = 5;
         velocity = new Vector3(0, 0, 0);
     }
 
@@ -26,6 +31,12 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 6)
+        {
+            rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
+            Destroy(collision.gameObject);
+            score += 100;
+            scoreLabel.text = "Score: " + score;
+        } else if (collision.gameObject.layer == 8)
         {
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
         }

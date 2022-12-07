@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        rb.AddForce(new Vector3(1, 1, 1) * 5, ForceMode.Impulse);
+        rb.AddForce(new Vector3(1, 1, 1), ForceMode.Impulse);
         reflectSpeed = 5;
         velocity = new Vector3(0, 0, 0);
     }
@@ -36,9 +36,21 @@ public class Ball : MonoBehaviour
             Destroy(collision.gameObject);
             score += 100;
             scoreLabel.text = "Score: " + score;
+            if (rb.velocity.magnitude < 5)
+            {
+                rb.velocity = rb.velocity * 5 / rb.velocity.magnitude;
+            }
         } else if (collision.gameObject.layer == 8)
         {
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
+            if (rb.velocity.magnitude < 5)
+            {
+                rb.velocity = rb.velocity * 5 / rb.velocity.magnitude;
+            }
+        } else if (collision.gameObject.layer == 9)
+        {
+            GameObject.FindObjectOfType<GameManager>().LifeLost();
+            Destroy(this.gameObject);
         }
     }
 

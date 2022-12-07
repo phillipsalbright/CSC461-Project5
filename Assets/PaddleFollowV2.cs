@@ -35,7 +35,7 @@ public class PaddleFollowV2 : MonoBehaviour
         float g = 1 / (1 + kd * Time.fixedDeltaTime + kp * Time.fixedDeltaTime * Time.fixedDeltaTime);
         float ksg = kp * g;
         float kdg = (kd + kp * Time.fixedDeltaTime) * g;
-        Vector3 force = (target.position - transform.position) * ksg - rb.velocity * kdg;
+        Vector3 force = (target.position + positionOffset - transform.position) * ksg - rb.velocity * kdg;
         rb.AddForce(force, ForceMode.Acceleration);
 
 

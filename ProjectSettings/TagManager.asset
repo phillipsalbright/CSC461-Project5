@@ -14,8 +14,8 @@ TagManager:
   - Brick
   - Player
   - Walls
-  - 
-  - 
+  - DeathBarrier
+  - PlayerBarrier
   - 
   - 
   - 

@@ -16,7 +16,7 @@ public class BrickManager : MonoBehaviour
 
     [SerializeField] float SPACING = 0.2f;
 
-    private GameObject[,,] bricks;
+    private static GameObject[,,] bricks;
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +28,57 @@ public class BrickManager : MonoBehaviour
         float zSpacing = brick.transform.localScale.z + SPACING;
 
         for (int x = 0; x < NUM_BRICKS_X; x++)
+        {
             for (int y = 0; y < NUM_BRICKS_Y; y++)
+            {
                 for (int z = 0; z < NUM_BRICKS_Z; z++)
-                    bricks[x,y,z] = Instantiate(brick, new Vector3(BRICK_START_X + (x * xSpacing), BRICK_START_Y + (y * ySpacing), BRICK_START_Z - (z * zSpacing)), Quaternion.identity);
+                {
+                    bricks[x, y, z] = Instantiate(brick, new Vector3(BRICK_START_X + (x * xSpacing), BRICK_START_Y + (y * ySpacing), BRICK_START_Z - (z * zSpacing)), Quaternion.identity);
+                    bricks[x, y, z].GetComponent<Brick>().gridPosition = new Vector3Int(x, y, z);
+                }
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public static void BreakBrick(GameObject brickObj, bool bigBrickBlast)
     {
-        
+        Vector3Int brickPos = brickObj.GetComponent<Brick>().gridPosition;
+        if (bigBrickBlast)
+        {
+            for (int x = brickPos.x - 1; x <= brickPos.x + 1; x++)
+            {
+                for (int y = brickPos.y - 1; y <= brickPos.y + 1; y++)
+                {
+                    for (int z = brickPos.z - 1; z <= brickPos.z + 1; z++)
+                    {
+                        if ((x == brickPos.x - 1 || x == brickPos.x + 1) && ( y != brickPos.y || z != brickPos.z)
+                            || (y == brickPos.y - 1 || y == brickPos.y + 1) && z != brickPos.z)
+                        {
+                            continue;
+                        }
+
+                        try
+                        {
+                            GameObject brick = bricks[x, y, z];
+                            if (brick != null)
+                            {
+                                Destroy(brick);
+                                bricks[x, y, z] = null;
+                            }
+                        }
+                        catch (System.IndexOutOfRangeException)
+                        {
+                            // skip brick
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            Destroy(bricks[brickPos.x, brickPos.y, brickPos.z]);
+            bricks[brickPos.x, brickPos.y, brickPos.z] = null;
+        }
     }
 }

@@ -13,6 +13,9 @@ public class Ball : MonoBehaviour
     private int score = 0;
     [SerializeField] private TextMeshProUGUI scoreLabel;
 
+    bool bigBrickBlast = true;
+    int bricksBlasted = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +36,25 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
-            Destroy(collision.gameObject);
-            score += 100;
-            scoreLabel.text = "Score: " + score;
+            if (collision.gameObject.GetComponent<Brick>() != null)
+            {
+                score += 100;
+                scoreLabel.text = "Score: " + score;
+                if (bricksBlasted < 3 && bigBrickBlast)
+                {
+                    bricksBlasted++;
+                } 
+                else
+                {
+                    bigBrickBlast = false;
+                }
+
+                BrickManager.BreakBrick(collision.gameObject, bigBrickBlast);
+            }
+            else
+            {
+                Debug.Log("non brick on brick collision layer");
+            }
         } else if (collision.gameObject.layer == 8)
         {
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;

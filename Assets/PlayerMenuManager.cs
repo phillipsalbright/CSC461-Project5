@@ -13,8 +13,9 @@ public class PlayerMenuManager : MonoBehaviour
 
     private void Update()
     {
+        InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controller), inputHelpers[1], out bool isPressed1);
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controller), inputHelpers[0], out bool isPressed);
-        if ((isPressed) && !buttonPressed)
+        if ((isPressed) && (isPressed1) && !buttonPressed)
         {
             buttonPressed = true;
             if (Menu.activeInHierarchy)

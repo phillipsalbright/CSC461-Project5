@@ -2378,6 +2378,8 @@ MonoBehaviour:
   scoreLabel: {fileID: 405610127}
   winMenu: {fileID: 1602363088}
   ball: {fileID: 2131549873}
+  orangeBrick: {fileID: 2100000, guid: efedd56ccacd61b4fb6819998625148e, type: 2}
+  blueBrick: {fileID: 2100000, guid: 84935a0e8682891428f60ce107ef14f0, type: 2}
 --- !u!1 &1953874241
 GameObject:
   m_ObjectHideFlags: 0

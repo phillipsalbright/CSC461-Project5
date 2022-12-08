@@ -21,13 +21,16 @@ public class BrickManager : MonoBehaviour
     static int brickTotal = 0;
     static int bricksBroken = 0;
 
-    static bool bigBrickBlast = true;
+    static bool bigBrickBlast = false;
     static int bricksBlasted = 0;
 
     private static int score = 0;
     [SerializeField] private TextMeshProUGUI scoreLabel;
     public GameObject winMenu;
     public GameObject ball;
+
+    public Material orangeBrick;
+    public Material blueBrick;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,15 @@ public class BrickManager : MonoBehaviour
                 {
                     bricks[x, y, z] = Instantiate(brick, new Vector3(BRICK_START_X + (x * xSpacing), BRICK_START_Y + (y * ySpacing), BRICK_START_Z - (z * zSpacing)), Quaternion.identity);
                     bricks[x, y, z].GetComponent<Brick>().gridPosition = new Vector3Int(x, y, z);
+                    bricks[x, y, z].GetComponent<MeshRenderer>().material = orangeBrick;
+
+                    int rand = Random.Range(0, 11);
+
+                    if (rand < 3)
+                    {
+                        bricks[x, y, z].GetComponent<MeshRenderer>().material = blueBrick;
+                        bricks[x, y, z].GetComponent<Brick>().type = "blast";
+                    }
                     brickTotal++;
                 }
             }
@@ -115,6 +127,12 @@ public class BrickManager : MonoBehaviour
             bricks[brickPos.x, brickPos.y, brickPos.z] = null;
             score += 100;
             bricksBroken++;
+        }
+
+        if (brickObj.GetComponent<Brick>().type == "blast")
+        {
+            bricksBlasted = 0;
+            bigBrickBlast = true;
         }
     }
 }

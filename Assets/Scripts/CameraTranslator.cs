@@ -21,7 +21,7 @@ public class CameraTranslator : MonoBehaviour
         float deltat = Time.deltaTime;
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controllerL), inputHelpers[0], out bool isPressed1);
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controllerR), inputHelpers[0], out bool isPressed);
-        float pos = this.transform.position.y;
+        float pos = this.transform.localPosition.y;
         if (isPressed)
         {
             pos -= deltat * 4;
@@ -31,8 +31,8 @@ public class CameraTranslator : MonoBehaviour
         {
             pos += deltat * 4;
         }
-        Mathf.Clamp(pos, 1, 5);
-        this.transform.position = new Vector3(this.transform.position.x, pos, this.transform.position.z);
+        pos = Mathf.Clamp(pos, 0, 4);
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, pos, this.transform.localPosition.z);
         
     }
 }

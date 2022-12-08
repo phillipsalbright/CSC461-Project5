@@ -193,6 +193,9 @@ MonoBehaviour:
   ball: {fileID: 0}
   orangeBrick: {fileID: 2100000, guid: efedd56ccacd61b4fb6819998625148e, type: 2}
   blueBrick: {fileID: 2100000, guid: 84935a0e8682891428f60ce107ef14f0, type: 2}
+  growBrick: {fileID: 2100000, guid: 007e5982a012e3b4d9310d150495362d, type: 2}
+  explosionEffect: {fileID: 1414779434264708, guid: 9747e55cc13229f45bfee75afeaa540c, type: 3}
+  brickBrokenEffect: {fileID: 4934247724152955736, guid: e9e6c653fd5c75e468ccc555c4d8f6a4, type: 3}
 --- !u!1 &5712005777726228458
 GameObject:
   m_ObjectHideFlags: 0

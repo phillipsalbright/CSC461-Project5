@@ -8,7 +8,7 @@ public class Brick : MonoBehaviour
     public string type = "default";
     public bool approaching = false;
 
-    private Vector3 moveVector = new Vector3(0, 0, -0.00025f);
+    private Vector3 moveVector = new Vector3(0, 0, -0.0005f);
 
     private void Update()
     {

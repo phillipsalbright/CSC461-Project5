@@ -8,6 +8,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
+    public void Challenge(int index)
+    {
+        BrickManager.approachingBricks = true;
+        LoadScene(index);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

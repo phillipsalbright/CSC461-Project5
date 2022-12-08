@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
-    public bool approachingBricks = false;
+    public static bool approachingBricks = false;
 
     [SerializeField] GameObject brick;
 

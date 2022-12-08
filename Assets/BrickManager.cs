@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BrickManager : MonoBehaviour
@@ -17,6 +18,16 @@ public class BrickManager : MonoBehaviour
     [SerializeField] float SPACING = 0.2f;
 
     private static GameObject[,,] bricks;
+    static int brickTotal = 0;
+    static int bricksBroken = 0;
+
+    static bool bigBrickBlast = true;
+    static int bricksBlasted = 0;
+
+    private static int score = 0;
+    [SerializeField] private TextMeshProUGUI scoreLabel;
+    public GameObject winMenu;
+    public GameObject ball;
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +46,35 @@ public class BrickManager : MonoBehaviour
                 {
                     bricks[x, y, z] = Instantiate(brick, new Vector3(BRICK_START_X + (x * xSpacing), BRICK_START_Y + (y * ySpacing), BRICK_START_Z - (z * zSpacing)), Quaternion.identity);
                     bricks[x, y, z].GetComponent<Brick>().gridPosition = new Vector3Int(x, y, z);
+                    brickTotal++;
                 }
             }
         }
     }
 
-
-    public static void BreakBrick(GameObject brickObj, bool bigBrickBlast)
+    private void Update()
     {
+        scoreLabel.text = "Score: " + score;
+
+        if (bricksBroken == brickTotal)
+        {
+            winMenu.SetActive(true);
+            ball.GetComponent<Ball>().PauseBall();
+            bricksBroken = 0;
+        }
+    }
+
+    public static void BreakBrick(GameObject brickObj)
+    {
+        if (bricksBlasted < 3 && bigBrickBlast)
+        {
+            bricksBlasted++;
+        }
+        else
+        {
+            bigBrickBlast = false;
+        }
+
         Vector3Int brickPos = brickObj.GetComponent<Brick>().gridPosition;
         if (bigBrickBlast)
         {
@@ -65,6 +97,8 @@ public class BrickManager : MonoBehaviour
                             {
                                 Destroy(brick);
                                 bricks[x, y, z] = null;
+                                score += 100;
+                                bricksBroken++;
                             }
                         }
                         catch (System.IndexOutOfRangeException)
@@ -79,6 +113,8 @@ public class BrickManager : MonoBehaviour
         {
             Destroy(bricks[brickPos.x, brickPos.y, brickPos.z]);
             bricks[brickPos.x, brickPos.y, brickPos.z] = null;
+            score += 100;
+            bricksBroken++;
         }
     }
 }

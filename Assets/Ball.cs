@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Ball : MonoBehaviour
 {
@@ -10,11 +9,8 @@ public class Ball : MonoBehaviour
     private Vector3 velocity;
     private float minReflectSpeed = 1;
 
-    private int score = 0;
-    [SerializeField] private TextMeshProUGUI scoreLabel;
-
-    bool bigBrickBlast = true;
-    int bricksBlasted = 0;
+    private bool paused = false;
+    private Vector3 storedVelocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +27,21 @@ public class Ball : MonoBehaviour
         velocity = rb.velocity;
     }
 
+    public void PauseBall()
+    {
+        paused = true;
+        storedVelocity = velocity;
+        rb.velocity = Vector3.zero;
+        Debug.Log("paused");
+    }
+
+    public void UnpauseBall()
+    {
+        paused = false;
+        rb.velocity = storedVelocity;
+        Debug.Log("not paused");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 6)
@@ -38,18 +49,7 @@ public class Ball : MonoBehaviour
             rb.velocity = (Vector3.Reflect(velocity, collision.GetContact(0).normal).normalized) * reflectSpeed;
             if (collision.gameObject.GetComponent<Brick>() != null)
             {
-                score += 100;
-                scoreLabel.text = "Score: " + score;
-                if (bricksBlasted < 3 && bigBrickBlast)
-                {
-                    bricksBlasted++;
-                } 
-                else
-                {
-                    bigBrickBlast = false;
-                }
-
-                BrickManager.BreakBrick(collision.gameObject, bigBrickBlast);
+                BrickManager.BreakBrick(collision.gameObject);
             }
             else
             {

@@ -22,16 +22,16 @@ public class CameraTranslator : MonoBehaviour
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controllerL), inputHelpers[0], out bool isPressed1);
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controllerR), inputHelpers[0], out bool isPressed);
         float pos = this.transform.localPosition.y;
-        if (isPressed)
+        if (isPressed1)
         {
             pos -= deltat * 4;
         }
 
-        if (isPressed1)
+        if (isPressed)
         {
             pos += deltat * 4;
         }
-        pos = Mathf.Clamp(pos, 0, 4);
+        pos = Mathf.Clamp(pos, 0, 3.8f);
         this.transform.localPosition = new Vector3(this.transform.localPosition.x, pos, this.transform.localPosition.z);
         
     }

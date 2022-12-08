@@ -5,4 +5,5 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     public Vector3Int gridPosition;
+    public string type = "default";
 }

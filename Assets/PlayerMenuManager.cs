@@ -15,7 +15,7 @@ public class PlayerMenuManager : MonoBehaviour
     {
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controller), inputHelpers[1], out bool isPressed1);
         InputHelpers.IsPressed(InputDevices.GetDeviceAtXRNode(controller), inputHelpers[0], out bool isPressed);
-        if ((isPressed) && (isPressed1) && !buttonPressed)
+        if (((isPressed) || (isPressed1)) && !buttonPressed)
         {
             buttonPressed = true;
             if (Menu.activeInHierarchy)
@@ -27,7 +27,7 @@ public class PlayerMenuManager : MonoBehaviour
                 OpenMenu();
             }
         }
-        else if (!(isPressed))
+        else if (!(isPressed) && !isPressed1)
         {
             buttonPressed = false;
         }
@@ -39,7 +39,12 @@ public class PlayerMenuManager : MonoBehaviour
         {
             g.SetActive(false);
         }
-        ball.GetComponent<Ball>().PauseBall();
+        ball = GameObject.FindObjectOfType<Ball>().gameObject;
+        if (ball)
+        {
+            ball.GetComponent<Ball>().PauseBall();
+
+        }
     }
 
     public void CloseMenu()
@@ -49,6 +54,11 @@ public class PlayerMenuManager : MonoBehaviour
         {
             g.SetActive(true);
         }
-        ball.GetComponent<Ball>().UnpauseBall();
+        ball = GameObject.FindObjectOfType<Ball>().gameObject;
+        if (ball)
+        {
+            ball.GetComponent<Ball>().UnpauseBall();
+
+        }
     }
 }

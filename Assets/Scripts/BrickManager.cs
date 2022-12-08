@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
+    public static bool approachingBricks = false;
     public static BrickManager instance;
+
     [SerializeField] GameObject brick;
 
     [SerializeField] int NUM_BRICKS_X = 8;
@@ -40,6 +42,11 @@ public class BrickManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        brickTotal = 0;
+        bricksBroken = 0;
+        bigBrickBlast = false;
+        bricksBlasted = 0;
+        score = 0;
         instance = this;
         bricks = new GameObject[NUM_BRICKS_X,NUM_BRICKS_Y,NUM_BRICKS_Z];
 
@@ -56,6 +63,11 @@ public class BrickManager : MonoBehaviour
                     bricks[x, y, z] = Instantiate(brick, new Vector3(BRICK_START_X + (x * xSpacing), BRICK_START_Y + (y * ySpacing), BRICK_START_Z - (z * zSpacing)), Quaternion.identity);
                     bricks[x, y, z].GetComponent<Brick>().gridPosition = new Vector3Int(x, y, z);
                     bricks[x, y, z].GetComponent<MeshRenderer>().material = orangeBrick;
+
+                    if (approachingBricks)
+                        bricks[x, y, z].GetComponent<Brick>().approaching = true;
+                    else
+                        bricks[x, y, z].GetComponent<Brick>().approaching = false;
 
                     int rand = Random.Range(0, 15);
 

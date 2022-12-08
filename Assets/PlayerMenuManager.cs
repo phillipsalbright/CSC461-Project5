@@ -9,6 +9,7 @@ public class PlayerMenuManager : MonoBehaviour
     public InputHelpers.Button[] inputHelpers;
     public XRNode controller = XRNode.LeftHand;
     private bool buttonPressed = false;
+    public GameObject ball;
 
     private void Update()
     {
@@ -37,6 +38,7 @@ public class PlayerMenuManager : MonoBehaviour
         {
             g.SetActive(false);
         }
+        ball.GetComponent<Ball>().PauseBall();
     }
 
     public void CloseMenu()
@@ -46,5 +48,6 @@ public class PlayerMenuManager : MonoBehaviour
         {
             g.SetActive(true);
         }
+        ball.GetComponent<Ball>().UnpauseBall();
     }
 }

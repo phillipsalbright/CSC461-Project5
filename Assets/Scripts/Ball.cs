@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     private float reflectSpeed;
     private Vector3 velocity;
     private float minReflectSpeed = 1;
+    private Vector3 originPoint;
 
     private bool paused = false;
     private Vector3 storedVelocity = Vector3.zero;
@@ -15,8 +16,9 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originPoint = this.transform.position;
         rb = this.GetComponent<Rigidbody>();
-        rb.AddForce(new Vector3(1, 1, 1), ForceMode.Impulse);
+        //rb.AddForce(new Vector3(1, 1, 1) * 2, ForceMode.Impulse);
         reflectSpeed = 5;
         velocity = new Vector3(0, 0, 0);
     }
@@ -50,6 +52,9 @@ public class Ball : MonoBehaviour
             if (rb.velocity.magnitude < 5)
             {
                 rb.velocity = rb.velocity * 5 / rb.velocity.magnitude;
+            } else if (rb.velocity.magnitude > 8.5f)
+            {
+                rb.velocity = rb.velocity * 8.5f / rb.velocity.magnitude;
             }
             if (collision.gameObject.GetComponent<Brick>() != null)
             {
@@ -66,10 +71,15 @@ public class Ball : MonoBehaviour
             {
                 rb.velocity = rb.velocity * 5 / rb.velocity.magnitude;
             }
+            else if (rb.velocity.magnitude > 8.5f)
+            {
+                rb.velocity = rb.velocity * 8.5f / rb.velocity.magnitude;
+            }
         } else if (collision.gameObject.layer == 9)
         {
             GameObject.FindObjectOfType<GameManager>().LifeLost();
-            Destroy(this.gameObject);
+            rb.velocity = Vector3.zero;
+            this.transform.position = originPoint;
         }
     }
 

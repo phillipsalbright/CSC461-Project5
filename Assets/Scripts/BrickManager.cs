@@ -19,6 +19,7 @@ public class BrickManager : MonoBehaviour
     [SerializeField] float BRICK_START_Z = 27f;
 
     [SerializeField] float SPACING = 0.2f;
+    [SerializeField] float XSpacing = 1.2f;
 
     private static GameObject[,,] bricks;
     static int brickTotal = 0;
@@ -35,6 +36,8 @@ public class BrickManager : MonoBehaviour
     public Material orangeBrick;
     public Material blueBrick;
     public Material growBrick;
+    public Material normalBall;
+    public Material blueBall;
 
     [SerializeField] GameObject explosionEffect;
     [SerializeField] GameObject brickBrokenEffect;
@@ -50,7 +53,7 @@ public class BrickManager : MonoBehaviour
         instance = this;
         bricks = new GameObject[NUM_BRICKS_X,NUM_BRICKS_Y,NUM_BRICKS_Z];
 
-        float xSpacing = brick.transform.localScale.x + SPACING;
+        float xSpacing = brick.transform.localScale.x * 2 + XSpacing;
         float ySpacing = brick.transform.localScale.y + SPACING;
         float zSpacing = brick.transform.localScale.z + SPACING;
 
@@ -62,22 +65,22 @@ public class BrickManager : MonoBehaviour
                 {
                     bricks[x, y, z] = Instantiate(brick, new Vector3(BRICK_START_X + (x * xSpacing), BRICK_START_Y + (y * ySpacing), BRICK_START_Z - (z * zSpacing)), Quaternion.identity);
                     bricks[x, y, z].GetComponent<Brick>().gridPosition = new Vector3Int(x, y, z);
-                    bricks[x, y, z].GetComponent<MeshRenderer>().material = orangeBrick;
+                    bricks[x, y, z].GetComponentInChildren<MeshRenderer>().material = orangeBrick;
 
                     if (approachingBricks)
                         bricks[x, y, z].GetComponent<Brick>().approaching = true;
                     else
                         bricks[x, y, z].GetComponent<Brick>().approaching = false;
 
-                    int rand = Random.Range(0, 15);
+                    int rand = Random.Range(0, 14);
 
-                    if (rand < 3)
+                    if (rand < 2)
                     {
-                        bricks[x, y, z].GetComponent<MeshRenderer>().material = blueBrick;
+                        bricks[x, y, z].GetComponentInChildren<MeshRenderer>().material = blueBrick;
                         bricks[x, y, z].GetComponent<Brick>().type = "blast";
-                    } else if (rand < 5)
+                    } else if (rand < 3)
                     {
-                        bricks[x, y, z].GetComponent<MeshRenderer>().material = growBrick;
+                        bricks[x, y, z].GetComponentInChildren<MeshRenderer>().material = growBrick;
                         bricks[x, y, z].GetComponent<Brick>().type = "grow";
                     }
                     brickTotal++;
@@ -103,10 +106,15 @@ public class BrickManager : MonoBehaviour
         if (bricksBlasted < 3 && bigBrickBlast)
         {
             bricksBlasted++;
+            if (bricksBlasted >= 3)
+            {
+                FindObjectOfType<Ball>().gameObject.GetComponentInChildren<MeshRenderer>().material = instance.normalBall;
+            }
         }
         else
         {
             bigBrickBlast = false;
+            FindObjectOfType<Ball>().gameObject.GetComponentInChildren<MeshRenderer>().material = instance.normalBall;
         }
 
         Vector3Int brickPos = brickObj.GetComponent<Brick>().gridPosition;
@@ -157,6 +165,7 @@ public class BrickManager : MonoBehaviour
         {
             bricksBlasted = 0;
             bigBrickBlast = true;
+            FindObjectOfType<Ball>().gameObject.GetComponentInChildren<MeshRenderer>().material = instance.blueBall;
         }
         else if (brickObj.GetComponent<Brick>().type == "grow")
         {

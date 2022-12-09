@@ -181,18 +181,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 2981273909380553629, guid: 66248cadbed965b43bd9b382dbad69ba, type: 3}
-  NUM_BRICKS_X: 8
+  NUM_BRICKS_X: 4
   NUM_BRICKS_Y: 5
-  NUM_BRICKS_Z: 4
-  BRICK_START_X: 0.5
+  NUM_BRICKS_Z: 5
+  BRICK_START_X: 1.7
   BRICK_START_Y: 7.6
   BRICK_START_Z: 23
   SPACING: 0.2
+  XSpacing: 0.2
   scoreLabel: {fileID: 9127802908963529391}
   winMenu: {fileID: 0}
   ball: {fileID: 0}
-  orangeBrick: {fileID: 2100000, guid: efedd56ccacd61b4fb6819998625148e, type: 2}
-  blueBrick: {fileID: 2100000, guid: 84935a0e8682891428f60ce107ef14f0, type: 2}
+  orangeBrick: {fileID: 2100000, guid: bc7958741268b1042897f128098087a8, type: 2}
+  blueBrick: {fileID: 2100000, guid: ed4281bb02fbf2d40aefba3e0b03a9ed, type: 2}
+  growBrick: {fileID: 2100000, guid: d499d2fb0bedd1943a4ba2c3f2ba5340, type: 2}
+  normalBall: {fileID: 2100000, guid: 57aca14b627b04b48a38a4b679ca5381, type: 2}
+  blueBall: {fileID: 2100000, guid: 4f2088838fe225041900cd1792e0afc8, type: 2}
+  explosionEffect: {fileID: 1414779434264708, guid: 9747e55cc13229f45bfee75afeaa540c, type: 3}
+  brickBrokenEffect: {fileID: 4934247724152955736, guid: e9e6c653fd5c75e468ccc555c4d8f6a4, type: 3}
 --- !u!1 &5712005777726228458
 GameObject:
   m_ObjectHideFlags: 0

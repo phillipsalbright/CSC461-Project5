@@ -682,6 +682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paddle
       objectReference: {fileID: 0}
+    - target: {fileID: 4298687199047976024, guid: 921992ff7efeddb44b992077aa20ccad, type: 3}
+      propertyPath: objectToFollow
+      value: 
+      objectReference: {fileID: 2133417734}
     - target: {fileID: 7120867301880012791, guid: 921992ff7efeddb44b992077aa20ccad, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1865,6 +1869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paddle
       objectReference: {fileID: 0}
+    - target: {fileID: 4298687199047976024, guid: 921992ff7efeddb44b992077aa20ccad, type: 3}
+      propertyPath: objectToFollow
+      value: 
+      objectReference: {fileID: 1001752991}
     - target: {fileID: 7120867301880012791, guid: 921992ff7efeddb44b992077aa20ccad, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2380,6 +2388,9 @@ MonoBehaviour:
   ball: {fileID: 2131549873}
   orangeBrick: {fileID: 2100000, guid: efedd56ccacd61b4fb6819998625148e, type: 2}
   blueBrick: {fileID: 2100000, guid: 84935a0e8682891428f60ce107ef14f0, type: 2}
+  growBrick: {fileID: 0}
+  explosionEffect: {fileID: 0}
+  brickBrokenEffect: {fileID: 0}
 --- !u!1 &1953874241
 GameObject:
   m_ObjectHideFlags: 0

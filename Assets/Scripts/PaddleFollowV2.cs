@@ -11,8 +11,8 @@ public class PaddleFollowV2 : MonoBehaviour
     [SerializeField] private Vector3 rotationOffset;
     private float frequency = 50f;
     private float damping = 1f;
-    private float rotationFrequency = 100f;
-    private float rotationDamping = .9f;
+    private float rotationFrequency = 50f;
+    private float rotationDamping = .15f;
     // Start is called before the first frame update
     void Start()
     {

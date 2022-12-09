@@ -24,14 +24,14 @@ public class CameraTranslator : MonoBehaviour
         float pos = this.transform.localPosition.y;
         if (isPressed1)
         {
-            pos -= deltat * 4;
+            pos -= deltat * 3;
         }
 
         if (isPressed)
         {
-            pos += deltat * 4;
+            pos += deltat * 3;
         }
-        pos = Mathf.Clamp(pos, 0, 3.8f);
+        pos = Mathf.Clamp(pos, 0,2.8f);
         this.transform.localPosition = new Vector3(this.transform.localPosition.x, pos, this.transform.localPosition.z);
         
     }

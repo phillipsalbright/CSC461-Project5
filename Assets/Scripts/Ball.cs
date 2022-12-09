@@ -34,11 +34,13 @@ public class Ball : MonoBehaviour
         paused = true;
         storedVelocity = velocity;
         rb.velocity = Vector3.zero;
+        rb.detectCollisions = false;
         Debug.Log("paused");
     }
 
     public void UnpauseBall()
     {
+        rb.detectCollisions = true;
         paused = false;
         rb.velocity = storedVelocity;
         Debug.Log("not paused");

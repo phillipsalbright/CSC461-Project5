@@ -1,4 +1,4 @@
-Shader "Custom/ShaderTest"
+Shader "Roystan/Toon"
 {
 	Properties
 	{

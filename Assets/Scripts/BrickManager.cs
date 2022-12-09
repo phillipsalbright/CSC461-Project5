@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
+    public static bool approachingBricks = false;
+    public static BrickManager instance;
+
     [SerializeField] GameObject brick;
 
     [SerializeField] int NUM_BRICKS_X = 8;
@@ -31,10 +34,20 @@ public class BrickManager : MonoBehaviour
 
     public Material orangeBrick;
     public Material blueBrick;
+    public Material growBrick;
+
+    [SerializeField] GameObject explosionEffect;
+    [SerializeField] GameObject brickBrokenEffect;
 
     // Start is called before the first frame update
     void Start()
     {
+        brickTotal = 0;
+        bricksBroken = 0;
+        bigBrickBlast = false;
+        bricksBlasted = 0;
+        score = 0;
+        instance = this;
         bricks = new GameObject[NUM_BRICKS_X,NUM_BRICKS_Y,NUM_BRICKS_Z];
 
         float xSpacing = brick.transform.localScale.x + SPACING;
@@ -51,12 +64,21 @@ public class BrickManager : MonoBehaviour
                     bricks[x, y, z].GetComponent<Brick>().gridPosition = new Vector3Int(x, y, z);
                     bricks[x, y, z].GetComponent<MeshRenderer>().material = orangeBrick;
 
-                    int rand = Random.Range(0, 11);
+                    if (approachingBricks)
+                        bricks[x, y, z].GetComponent<Brick>().approaching = true;
+                    else
+                        bricks[x, y, z].GetComponent<Brick>().approaching = false;
+
+                    int rand = Random.Range(0, 15);
 
                     if (rand < 3)
                     {
                         bricks[x, y, z].GetComponent<MeshRenderer>().material = blueBrick;
                         bricks[x, y, z].GetComponent<Brick>().type = "blast";
+                    } else if (rand < 5)
+                    {
+                        bricks[x, y, z].GetComponent<MeshRenderer>().material = growBrick;
+                        bricks[x, y, z].GetComponent<Brick>().type = "grow";
                     }
                     brickTotal++;
                 }
@@ -90,6 +112,7 @@ public class BrickManager : MonoBehaviour
         Vector3Int brickPos = brickObj.GetComponent<Brick>().gridPosition;
         if (bigBrickBlast)
         {
+            Instantiate(instance.explosionEffect, brickObj.transform.position, brickObj.transform.rotation);
             for (int x = brickPos.x - 1; x <= brickPos.x + 1; x++)
             {
                 for (int y = brickPos.y - 1; y <= brickPos.y + 1; y++)
@@ -123,6 +146,7 @@ public class BrickManager : MonoBehaviour
         }
         else
         {
+            Instantiate(instance.brickBrokenEffect, brickObj.transform.position, brickObj.transform.rotation);
             Destroy(bricks[brickPos.x, brickPos.y, brickPos.z]);
             bricks[brickPos.x, brickPos.y, brickPos.z] = null;
             score += 100;
@@ -133,6 +157,14 @@ public class BrickManager : MonoBehaviour
         {
             bricksBlasted = 0;
             bigBrickBlast = true;
+        }
+        else if (brickObj.GetComponent<Brick>().type == "grow")
+        {
+            PaddleGrowth[] paddles = GameObject.FindObjectsOfType<PaddleGrowth>();
+            foreach(PaddleGrowth p in paddles)
+            {
+                p.powerup(10f);
+            }
         }
     }
 }

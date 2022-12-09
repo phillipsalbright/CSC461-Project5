@@ -35,11 +35,13 @@ public class Ball : MonoBehaviour
         storedVelocity = velocity;
         rb.velocity = Vector3.zero;
         rb.detectCollisions = false;
+        this.GetComponent<SphereCollider>().enabled = false;
         Debug.Log("paused");
     }
 
     public void UnpauseBall()
     {
+        this.GetComponent<SphereCollider>().enabled = true;
         rb.detectCollisions = true;
         paused = false;
         rb.velocity = storedVelocity;

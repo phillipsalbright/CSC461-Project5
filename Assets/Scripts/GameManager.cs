@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         } else
         {
             gameOverScreen.SetActive(true);
+            FindObjectOfType<Ball>().PauseBall();
             return;
         }
         livesText.text = "Lives Left: " + livesLeft;

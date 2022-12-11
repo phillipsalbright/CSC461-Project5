@@ -2252,8 +2252,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Controls:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
+  m_sharedMaterial: {fileID: -7740642248643088841, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3739,7 +3739,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -38}
-  m_SizeDelta: {x: 520.16, y: 89.1}
+  m_SizeDelta: {x: 701.8, y: 89.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984351477
 MonoBehaviour:
@@ -3772,8 +3772,8 @@ MonoBehaviour:
 
     Right stick for snap turning'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
+  m_sharedMaterial: {fileID: -7740642248643088841, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3797,8 +3797,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4252,7 +4252,7 @@ PrefabInstance:
       objectReference: {fileID: 2016916344}
     - target: {fileID: 7545432636379078986, guid: ff02c158e7e16a74a941b8d632d7f41d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: Challenge
       objectReference: {fileID: 0}
     - target: {fileID: 7545432636379078986, guid: ff02c158e7e16a74a941b8d632d7f41d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4671,8 +4671,8 @@ MonoBehaviour:
 
     Thomas Gelman'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
+  m_sharedMaterial: {fileID: -7740642248643088841, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5807,7 +5807,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 341.6, y: 89.1}
+  m_SizeDelta: {x: 355.34, y: 89.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687777765
 MonoBehaviour:
@@ -5829,10 +5829,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Breakout 3D VR
+  m_text: Breakout VR
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
+  m_sharedMaterial: {fileID: -7740642248643088841, guid: 25371d3fe8ced2e438453afd68c828d0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

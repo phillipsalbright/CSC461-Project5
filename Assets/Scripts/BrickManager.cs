@@ -91,7 +91,7 @@ public class BrickManager : MonoBehaviour
 
     private void Update()
     {
-        scoreLabel.text = "Score: " + score;
+        scoreLabel.text = "Score:" + score;
 
         if (bricksBroken == brickTotal)
         {

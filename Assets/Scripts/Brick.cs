@@ -8,13 +8,13 @@ public class Brick : MonoBehaviour
     public string type = "default";
     public bool approaching = false;
 
-    private Vector3 moveVector = new Vector3(0, 0, -0.0005f);
+    private Vector3 moveVector = new Vector3(0, 0, -.09f);
 
     private void Update()
     {
         if (approaching)
         {
-            gameObject.transform.position += moveVector;
+            gameObject.transform.position += moveVector * Time.deltaTime;
         }
     }
 }

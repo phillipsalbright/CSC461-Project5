@@ -58,7 +58,17 @@ public class Ball : MonoBehaviour
                 rb.velocity = rb.velocity * 5 / rb.velocity.magnitude;
             } else if (rb.velocity.magnitude > 8.5f)
             {
-                rb.velocity = rb.velocity * 8.5f / rb.velocity.magnitude;
+                if (BrickManager.approachingBricks)
+                {
+                    if (rb.velocity.magnitude > 10.5f)
+                    {
+                        rb.velocity = rb.velocity * 10.5f / rb.velocity.magnitude;
+                    }
+                } else
+                {
+                    rb.velocity = rb.velocity * 8.5f / rb.velocity.magnitude;
+
+                }
             }
             if (collision.gameObject.GetComponent<Brick>() != null)
             {
@@ -77,7 +87,18 @@ public class Ball : MonoBehaviour
             }
             else if (rb.velocity.magnitude > 8.5f)
             {
-                rb.velocity = rb.velocity * 8.5f / rb.velocity.magnitude;
+                if (BrickManager.approachingBricks)
+                {
+                    if (rb.velocity.magnitude > 10.5f)
+                    {
+                        rb.velocity = rb.velocity * 10.5f / rb.velocity.magnitude;
+                    }
+                }
+                else
+                {
+                    rb.velocity = rb.velocity * 8.5f / rb.velocity.magnitude;
+
+                }
             }
         } else if (collision.gameObject.layer == 9)
         {

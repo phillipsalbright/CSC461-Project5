@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<Ball>().PauseBall();
             return;
         }
-        livesText.text = "Lives Left: " + livesLeft;
+        livesText.text = "Lives Left:" + livesLeft;
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        livesText.text = "Lives Left: " + livesLeft;
+        livesText.text = "Lives Left:" + livesLeft;
     }
 
     // Update is called once per frame

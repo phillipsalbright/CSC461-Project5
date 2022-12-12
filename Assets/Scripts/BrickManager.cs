@@ -109,12 +109,14 @@ public class BrickManager : MonoBehaviour
             if (bricksBlasted >= 3)
             {
                 FindObjectOfType<Ball>().gameObject.GetComponentInChildren<MeshRenderer>().material = instance.normalBall;
+                FindObjectOfType<Ball>().gameObject.GetComponentInChildren<Outline>().OutlineColor = new Color(0.16f, 0.16f, 0.16f);
             }
         }
         else
         {
             bigBrickBlast = false;
             FindObjectOfType<Ball>().gameObject.GetComponentInChildren<MeshRenderer>().material = instance.normalBall;
+            FindObjectOfType<Ball>().gameObject.GetComponentInChildren<Outline>().OutlineColor = new Color(0.16f, 0.16f, 0.16f);
         }
 
         Vector3Int brickPos = brickObj.GetComponent<Brick>().gridPosition;
@@ -166,6 +168,7 @@ public class BrickManager : MonoBehaviour
             bricksBlasted = 0;
             bigBrickBlast = true;
             FindObjectOfType<Ball>().gameObject.GetComponentInChildren<MeshRenderer>().material = instance.blueBall;
+            FindObjectOfType<Ball>().gameObject.GetComponentInChildren<Outline>().OutlineColor = new Color(.06f, 0, .55f);
         }
         else if (brickObj.GetComponent<Brick>().type == "grow")
         {
@@ -174,6 +177,7 @@ public class BrickManager : MonoBehaviour
             {
                 p.powerup(10f);
             }
+            FindObjectOfType<Ball>().gameObject.GetComponentInChildren<Outline>().OutlineColor = new Color(.75f, 0, .16f);
         }
     }
 }

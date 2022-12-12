@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3036087993143912720}
   - component: {fileID: 7907368593005715593}
   - component: {fileID: 2772703808346948058}
+  - component: {fileID: 5276562335862616890}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -83,6 +84,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331410649582471337}
   m_Mesh: {fileID: 1582220196305932869, guid: 5c7471cb5ebc62948881d76ed6646ac4, type: 3}
+--- !u!114 &5276562335862616890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331410649582471337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 0.16, g: 0.16, b: 0.16, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &680009294846832691
 GameObject:
   m_ObjectHideFlags: 0
